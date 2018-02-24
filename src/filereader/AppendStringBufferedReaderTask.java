@@ -35,7 +35,7 @@ public class AppendStringBufferedReaderTask implements Runnable{
 	 */
 	public static String readFileToStringBufferedReder(String filename) {
 		// create a string for the data to read
-		FileReader reader;
+		FileReader reader = null;
 		BufferedReader bufferReader = null;
 		String data = "";
 		String line;
@@ -52,9 +52,10 @@ public class AppendStringBufferedReaderTask implements Runnable{
 		// close the file
 		if(bufferReader != null)
 			try {
+			reader.close();
 			bufferReader.close();
 		} catch (IOException e) {
-			
+			e.printStackTrace();
 		}
 		return data;
 	}

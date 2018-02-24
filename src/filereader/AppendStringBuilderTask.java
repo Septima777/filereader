@@ -59,9 +59,10 @@ public class AppendStringBuilderTask implements Runnable {
 		// close the file
 		if (reader != null) {
 			try {
+				in.close();
 				reader.close();
 			} catch (IOException e) {
-				
+				e.printStackTrace();
 			}
 		}
 		return data.toString();
