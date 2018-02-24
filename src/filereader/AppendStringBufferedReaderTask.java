@@ -4,15 +4,35 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * This class Read a text file one line at a time. Append each line 
+ * to the String containing file data.
+ * @author Noppawan Kulchol
+ *
+ */
 public class AppendStringBufferedReaderTask implements Runnable{
 
+	/** name of the file */
 	private String fileName;
+	/** size of the file */
 	private int fileSize;
 	
+	/**
+	 * Initialize name of the file.
+	 * 
+	 * @param filename
+	 */
 	public AppendStringBufferedReaderTask(String fileName) {
 		this.fileName = fileName;
 	}
 	
+	/**
+	 * Read a text file one line at a time. Append each line 
+	 * to the String containing file data.
+	 * 
+	 * @param filename
+	 *            is name of file that need to read.
+	 */
 	public static String readFileToStringBufferedReder(String filename) {
 		// create a string for the data to read
 		FileReader reader;
@@ -20,11 +40,9 @@ public class AppendStringBufferedReaderTask implements Runnable{
 		String data = "";
 		String line;
 		try {
-			// open the file
+			
 			reader = new FileReader(filename);
-			// read as characters, so what to do?
 			bufferReader = new BufferedReader(reader);
-			// read the file
 			while ((line = bufferReader.readLine()) != null) { 
 				data = data + line + '\n';
 			}
@@ -41,11 +59,19 @@ public class AppendStringBufferedReaderTask implements Runnable{
 		return data;
 	}
 	
+	/**
+	 * print the description.
+	 * 
+	 * @return description into String.
+	 */
 	@Override
 	public String toString() {
 		return String.format("Reading Alice-in-Wonderland.txt using BufferedReader, append lines to String. \nRead %,d chars ", fileSize);
 	}
 
+	/**
+	 * get size of the file.
+	 */
 	@Override
 	public void run() {
 		String file = readFileToStringBufferedReder(fileName);
